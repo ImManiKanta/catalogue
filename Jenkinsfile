@@ -7,6 +7,9 @@ pipeline {
     environment {
         appVersion = ""
     }
+    options {
+        disableConcurrentBuilds()
+    }
     stages {     
         stage('Read version'){
             steps {
