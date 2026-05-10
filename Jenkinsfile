@@ -34,6 +34,16 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool name: "sonar-8"  //agent configuration
+                    withSonarQubeEnv('sonar-server') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
         stage('Build image') { 
             steps {
                 script {
