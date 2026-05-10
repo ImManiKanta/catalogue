@@ -49,7 +49,9 @@ pipeline {
        stage('Push image') {
             steps {
                 script {
-                 sh docker push 166557488034.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion}
+                    sh """
+                        docker push 166557488034.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion}
+                    """
                 }
             }
         }     
