@@ -34,11 +34,13 @@ pipeline {
             }
         }
         stage('Build image') { 
-        steps {
-            sh """
-                docker build -t catalogue:${appVersion}
-            """
-         }
+            steps {
+                script {
+                    sh """
+                    docker build -t catalogue:${appVersion} .
+                """
+                }  
+            }
        }
         
     }
