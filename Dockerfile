@@ -8,7 +8,9 @@ RUN npm install
 FROM node:20.20.2-alpine3.23
 WORKDIR /app
 EXPOSE 8080
-COPY --from=builder /app /app 
+# COPY --from=builder /app /app 
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/server.js .
 ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/catalogue"
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
