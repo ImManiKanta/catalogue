@@ -24,20 +24,22 @@ pipeline {
             }
         }
 
-        stage('Build') { 
+        stage('Install dependencies') { 
             steps {
-                echo "Building"
+                steps{
+                    sh """
+                        npm install
+                    """
+                }
             }
         }
-        stage('Test') { 
+        stage('Build image') { 
         steps {
-            echo "Testing"
+            sh """
+                docker build -t catalogue:${appVersion}
+            """
          }
        }
-        stage('Deploy') { 
-        steps {
-            echo "Deploying"
-         }
-       }
+        
     }
 }
