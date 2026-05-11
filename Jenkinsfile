@@ -161,7 +161,7 @@ pipeline {
         }
         stage('Checkout catalogue manifests') {    
             steps {
-                dir('k8s-manifests') {      
+                dir('k8s-ingress') {      
                     git url: 'https://github.com/ImManiKanta/k8s-ingress.git',
                         branch: 'main'
                 }
