@@ -154,7 +154,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker push ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion}
+                        docker push ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${appVersion} 
                     """
                 }
             }
