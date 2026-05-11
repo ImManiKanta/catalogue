@@ -202,7 +202,7 @@ pipeline {
     post { 
         always { 
             echo 'Clean workspace in Jenkins agent'
-            //cleanWs()
+            cleanWs()
         }
         success {
             echo "pipeline success"
