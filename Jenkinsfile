@@ -179,7 +179,7 @@ pipeline {
                         sh """
                             aws eks update-kubeconfig --region us-east-1 --name roboshop 
                             kubectl create namespace uat
-                            kubectl apply -f backend/manifest.yaml -n uat
+                            kubectl apply -f  k8s-ingress/backend/manifest.yaml -n uat
                         """
                         }   
                     } 
@@ -188,7 +188,7 @@ pipeline {
                         withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                         sh """
                             aws eks update-kubeconfig --region us-east-1 --name roboshop 
-                            sed -i 's/1.0.0/${appVersion}/g' backend/manifest.yaml
+                            sed -i 's/1.0.0/${appVersion}/g'  k8s-ingress/backend/manifest.yaml
                             kubectl apply -f namespace.yaml
                             kubectl apply -f backend/manifest.yaml -n roboshop
                         """
