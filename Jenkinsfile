@@ -34,6 +34,15 @@ pipeline {
                 }
             }
         }
+        stage ('Unit tests') {
+            steps {
+                script {
+                    sh """
+                        npm test
+                    """
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -41,6 +50,13 @@ pipeline {
                     withSonarQubeEnv('sonar-server') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
+                }
+            }
+        }
+        stage ('Quality Gate'){
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
                 }
             }
         }
@@ -65,5 +81,18 @@ pipeline {
                 }
             }
         }     
+    }
+    // post build
+    post { 
+        always { 
+            echo 'Clean workspace in Jenkins agent'
+            cleanWs()
+        }
+        success {
+            echo "pipeline success"
+        }
+        failure {
+            echo "pipeline failure"
+        }
     }
 }
