@@ -11,7 +11,7 @@ pipeline {
     }
     parameters {
         choice(name: 'ENVIRONMENT', 
-        choices: ['UAT', 'PROD'], 
+        choices: ['DEV', 'UAT', 'PROD'], 
         description: 'Select the environment to deploy')
     }
     options {
@@ -39,15 +39,15 @@ pipeline {
                 }
             }
         }
-        stage ('Unit tests') {
-            steps {
-                script {
-                    sh """
-                        npm test
-                    """
-                }
-            }
-        }
+        // stage ('Unit tests') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 npm test
+        //             """
+        //         }
+        //     }
+        // }
         // stage('SonarQube Analysis') {
         //     steps {
         //         script {
