@@ -159,9 +159,9 @@ pipeline {
                 }
             }
         }
-        stage('Checkout catalogue manifests') {       // ← checkout second repo
+        stage('Checkout catalogue manifests') {    
             steps {
-                dir('k8s-manifests') {          // ← clones into this folder
+                dir('k8s-manifests') {      
                     git url: 'https://github.com/ImManiKanta/k8s-ingress.git',
                         branch: 'main'
                 }
