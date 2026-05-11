@@ -189,6 +189,7 @@ pipeline {
                         sh """
                             aws eks update-kubeconfig --region us-east-1 --name roboshop 
                             sed -i 's/1.0.0/${appVersion}/g'  k8s-ingress/backend/manifest.yaml
+                            cd k8s-ingress/
                             kubectl apply -f namespace.yaml
                             kubectl apply -f backend/manifest.yaml -n roboshop
                         """
